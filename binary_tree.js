@@ -57,10 +57,22 @@ class Tree{
 			return null;
 		}
 	}
+
+	getElementsInOrder(node = this.root, results = []){
+		if(node.leftChild != null){
+			this.getElementsInOrder(node.leftChild, results);
+		}
+		results.push(node.value);
+		if(node.rightChild != null){
+			this.getElementsInOrder(node.rightChild, results);
+		}
+		return results;
+	}
 }
 let depth = 0;
 node = new Node(6);
 tree = new Tree(node, [4,2,9,5,1,8,10]);
 tree.insertAll(tree.array);
 Tree.display(tree.root);
-// console.log(tree.find(2))
+console.log(tree.find(2))
+console.log(tree.getElementsInOrder())
