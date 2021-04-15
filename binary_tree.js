@@ -26,14 +26,28 @@ class Tree{
 	constructor(rootNode, array){
 		this.root = rootNode;
 		this.array = array;
+		this.depth = 0;
 	}
 
 	insertAll(values){
 		values.forEach(value => this.root.insert(value));
 	}
-}
 
-node = new Node(6)
-tree = new Tree(node, [4,2,9,5,1,8,9])
-tree.insertAll(tree.array)
-console.log(tree)
+	static display(node) {
+		if(node.leftChild != null){
+			depth++
+			Tree.display(node.leftChild);	
+		}
+		console.log(`${" ".repeat(depth * 4)}${node.value}`)
+		if (node.rightChild != null){
+			depth++
+			Tree.display(node.rightChild);
+		}
+		depth--
+	}
+}
+let depth = 0;
+node = new Node(6);
+tree = new Tree(node, [4,2,9,5,1,8,10]);
+tree.insertAll(tree.array);
+Tree.display(tree.root);
