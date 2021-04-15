@@ -34,14 +34,14 @@ class Tree{
 	}
 
 	static display(node) {
-		if(node.leftChild != null){
+		if(node.rightChild != null){
 			depth++
-			Tree.display(node.leftChild);	
+			Tree.display(node.rightChild);	
 		}
 		console.log(`${" ".repeat(depth * 4)}${node.value}`)
-		if (node.rightChild != null){
+		if (node.leftChild != null){
 			depth++
-			Tree.display(node.rightChild);
+			Tree.display(node.leftChild);
 		}
 		depth--
 	}
@@ -68,6 +68,17 @@ class Tree{
 		}
 		return results;
 	}
+
+	getElementsInReverseOrder(node = this.root, results = []){
+		if(node.rightChild != null){
+			this.getElementsInReverseOrder(node.rightChild, results);
+		}
+		results.push(node.value);
+		if(node.leftChild != null){
+			this.getElementsInReverseOrder(node.leftChild, results);
+		}
+		return results;
+	}
 }
 let depth = 0;
 node = new Node(6);
@@ -76,3 +87,4 @@ tree.insertAll(tree.array);
 Tree.display(tree.root);
 console.log(tree.find(2))
 console.log(tree.getElementsInOrder())
+console.log(tree.getElementsInReverseOrder())
