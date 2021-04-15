@@ -45,9 +45,22 @@ class Tree{
 		}
 		depth--
 	}
+
+	find(value, node = this.root){
+		if (node.value == value){
+			return node;
+		} else if (value > node.value && node.rightChild != null){
+			return this.find(value, node.rightChild);	
+		} else if (value < node.value && node.leftChild != null){
+			return this.find(value, node.leftChild);
+		} else {
+			return null;
+		}
+	}
 }
 let depth = 0;
 node = new Node(6);
 tree = new Tree(node, [4,2,9,5,1,8,10]);
 tree.insertAll(tree.array);
 Tree.display(tree.root);
+// console.log(tree.find(2))
